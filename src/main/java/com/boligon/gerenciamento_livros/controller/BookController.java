@@ -1,7 +1,7 @@
 package com.boligon.gerenciamento_livros.controller;
 
-import com.boligon.gerenciamento_livros.models.BookModel;
-import com.boligon.gerenciamento_livros.services.BookService;
+import com.boligon.gerenciamento_livros.entity.BookEntity;
+import com.boligon.gerenciamento_livros.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +17,14 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping
-    public ResponseEntity<List<BookModel>> findAll(){
-        List<BookModel> bookModels = bookService.findAll();
-        return ResponseEntity.ok().body(bookModels);
+    public ResponseEntity<List<BookEntity>> findAll(){
+        List<BookEntity> bookEntities = bookService.findAll();
+        return ResponseEntity.ok().body(bookEntities);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BookModel> findById(@PathVariable Long id){
-        Optional<BookModel> bookModel = bookService.findById(id);
+    public ResponseEntity<BookEntity> findById(@PathVariable Long id){
+        Optional<BookEntity> bookModel = bookService.findById(id);
         if(bookModel.isPresent()){
             return ResponseEntity.ok().body(bookModel.get());
         } else {
@@ -33,8 +33,8 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<BookModel> save(@RequestBody BookModel bookModel){
-        BookModel book = bookService.save(bookModel);
+    public ResponseEntity<BookEntity> save(@RequestBody BookEntity bookEntity){
+        BookEntity book = bookService.save(bookEntity);
         return ResponseEntity.status(201).body(book);
     }
 

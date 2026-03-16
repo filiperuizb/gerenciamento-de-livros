@@ -1,10 +1,10 @@
-package com.boligon.gerenciamento_livros.models;
+package com.boligon.gerenciamento_livros.entity;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="tb_livro")
-public class BookModel {
+public class BookEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class BookModel {
 
     private Integer anoPublicacao;
 
-    public BookModel() {
+    public BookEntity() {
     }
 
     public Long getId() {
