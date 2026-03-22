@@ -31,4 +31,13 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
+    public BookEntity atualizar(Long id, BookEntity atualizarBook) {
+        BookEntity entity = bookRepository.findById(id).get();
+        entity.setTitle(atualizarBook.getTitle());
+        entity.setAuthor(atualizarBook.getAuthor());
+        entity.setAnoPublicacao(atualizarBook.getAnoPublicacao());
+
+        return bookRepository.save(entity);
+    }
+
 }

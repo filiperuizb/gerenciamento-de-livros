@@ -44,5 +44,11 @@ public class BookController {
         bookService.deleteById(id);
         return ResponseEntity.status(204).build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BookEntity> atualizar(@PathVariable Long id, @RequestBody BookEntity atualizarBook) {
+        BookEntity entity = bookService.atualizar(id, atualizarBook);
+        return ResponseEntity.ok(entity);
+    }
     
 }
